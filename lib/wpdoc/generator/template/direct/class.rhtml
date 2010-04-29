@@ -15,9 +15,11 @@
 <body>     
     <div class="banner">
         <h1>
+            <% if klass.parent && klass.parent.full_name != 'Global' && klass.full_name != 'Global' %>
             <span class="type"><%= klass.module? ? 'Module' : 'Class' %></span> 
+            <% end %>
             <%= h klass.full_name %> 
-            <% if klass.type == 'class' %>
+            <% if klass.type == 'class' && !klass.superclass.nil? %>
                 <span class="parent">&lt; 
                     <% if String === klass.superclass %>
                     <%= klass.superclass %>
