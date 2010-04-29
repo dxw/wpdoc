@@ -1,4 +1,4 @@
-= SDoc
+= WPDoc
 == What's in?
 - shtml - RDoc's generator to build searchable documentation
 - <tt>sdoc-merge</tt> - comand line tool to build merge multiple sdoc documentations

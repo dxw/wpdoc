@@ -2,8 +2,8 @@ require 'optparse'
 require 'pathname'
 require 'fileutils'
 
-require 'sdoc/json_backend'
-require 'sdoc/templatable'
+require 'wpdoc/json_backend'
+require 'wpdoc/templatable'
 
 class SDoc::Merge
   include SDoc::Templatable
@@ -37,7 +37,7 @@ class SDoc::Merge
   
   def parse_options(options)
     opts = OptionParser.new do |opt|     
-      opt.banner = "Usage: sdoc-merge [options] directories"
+      opt.banner = "Usage: wpdoc-merge [options] directories"
       
       opt.on("-n", "--names [NAMES]", "Names of merged repositories. Comma separated") do |v|
         @names = v.split(',').map{|name| name.strip }
@@ -202,7 +202,7 @@ class SDoc::Merge
       unless File.exists?(File.join(dir, FLAG_FILE)) && 
       File.exists?(File.join(dir, RDoc::Generator::SHtml::TREE_FILE)) && 
       File.exists?(File.join(dir, RDoc::Generator::SHtml::SEARCH_INDEX_FILE))
-        error "#{dir} does not seem to be an sdoc directory"
+        error "#{dir} does not seem to be an wpdoc directory"
       end
     end
   end
