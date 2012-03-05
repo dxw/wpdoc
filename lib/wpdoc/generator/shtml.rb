@@ -67,7 +67,7 @@ class RDoc::Generator::SHtml
     end
     @github_url_cache = {}
 
-    template = @options.template || 'direct'
+    template = 'direct'
 
     templ_dir = self.class.template_dir template
 
@@ -209,9 +209,7 @@ class RDoc::Generator::SHtml
     }.flatten.sort{ |a, b| a.name == b.name ? a.parent.full_name <=> b.parent.full_name : a.name <=> b.name }.select { |method| 
       method.document_self 
     }
-    unless @options.show_all
-      list = list.find_all {|m| m.visibility == :public || m.visibility == :protected || m.force_documentation }
-    end
+    list = list.find_all {|m| m.visibility == :public || m.visibility == :protected || m.force_documentation }
 
     list.each do |method|
       index[:searchIndex].push( search_string(method.name) + '()' )
@@ -278,6 +276,7 @@ class RDoc::Generator::SHtml
   ### Strip comments on a space after 100 chars
   def snippet(str)
     str ||= ''
+    str = str.to_s
     if str =~ /^(?>\s*)[^\#]/
       content = str
     else
